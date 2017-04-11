@@ -1,0 +1,10 @@
+Things to do:
+
+1. Research background processes
+2. Access Media
+3. Find Container to place alarms in
+4. Create Alarm object
+	4a. Access system time
+	4b. Determine if system time is the same as the alarms time
+	4c. Time Picker, Date Picker
+5. Store infinite Alarm objects
