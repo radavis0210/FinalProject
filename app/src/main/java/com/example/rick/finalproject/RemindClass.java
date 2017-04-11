@@ -12,8 +12,8 @@ import android.content.Intent;
  */
     public class RemindClass extends IntentService {
 //
-        public RemindClass(){
-            super("ReminderService");
+        public RemindClass(String name){
+            super(name);
         }
         @Override
         protected void onHandleIntent(Intent workIntent) {
@@ -26,7 +26,7 @@ import android.content.Intent;
             Notification.Builder builder = new Notification.Builder(this);
 
             builder.setContentIntent(contentIntent)
-                   // .setSmallIcon(R.drawable.ic_launcher)
+                    //.setSmallIcon()
                     .setTicker("Local Notification Ticker")
                     .setWhen(System.currentTimeMillis())
                     .setAutoCancel(true)
