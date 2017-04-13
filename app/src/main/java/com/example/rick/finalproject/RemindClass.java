@@ -4,6 +4,7 @@ import android.app.IntentService;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 
@@ -12,8 +13,9 @@ import android.content.Intent;
  */
     public class RemindClass extends IntentService {
 //
-        public RemindClass(String name){
-            super(name);
+
+        public RemindClass(){
+            super("RemindClass");
         }
         @Override
         protected void onHandleIntent(Intent workIntent) {

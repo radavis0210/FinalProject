@@ -17,7 +17,7 @@
         </activity>
 
         <service
-            android:name=".RSSPullService"
+            android:name=".RemindClass"
             android:exported="false"/>
     </application>
 

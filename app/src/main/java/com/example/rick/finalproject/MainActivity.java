@@ -62,11 +62,12 @@ public class MainActivity extends AppCompatActivity {
 
             long dif = timeInMills - nowL;
 
-            Intent intent = new Intent(MainActivity.this, RemindClass.class);
+            Intent intent = new Intent(getApplicationContext(), RemindClass.class);
             startService(intent);
             PendingIntent pendingIntent = PendingIntent.getService(MainActivity.this, 0, intent, 0);
 
             alarmManager.set(AlarmManager.RTC, dif, pendingIntent);
+
         }
     };
 
