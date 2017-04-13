@@ -1,22 +1,27 @@
 package com.example.rick.finalproject;
 
 import android.app.AlarmManager;
-import android.app.IntentService;
 import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
 import android.widget.TimePicker;
 
-import java.sql.Time;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     int mHour, mMinute;
     RemindClass reminderService;
+
+    private List<Alarm> alarmList = new ArrayList<>();
+    private RecyclerView rvAlarms;
+    private AlarmsAdapter aAdapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -26,6 +31,10 @@ public class MainActivity extends AppCompatActivity {
 
         TimePickerDialog dialog = new TimePickerDialog(this, mTimeSetListener, mHour, mMinute, false);
         dialog.show();
+
+        //db/recyclerView setup here... when we have the recycler view (dropdown list thing)
+        dbHelper db = new dbHelper(this);
+
     }
 
     TimePickerDialog.OnTimeSetListener mTimeSetListener =  new TimePickerDialog.OnTimeSetListener() {
