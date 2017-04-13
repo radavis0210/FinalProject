@@ -9,7 +9,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TimePicker;
 
+import java.sql.Time;
 import java.util.Calendar;
+import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        reminderService = new RemindClass("RemindClass");
+        reminderService = new RemindClass("RC");
 
         TimePickerDialog dialog = new TimePickerDialog(this, mTimeSetListener, mHour, mMinute, false);
         dialog.show();
@@ -42,11 +44,20 @@ public class MainActivity extends AppCompatActivity {
             c.set(Calendar.MINUTE, mMinute);
             c.set(Calendar.SECOND, 0);
 
-            long timeInMills = c.getTimeInMillis();
+
+            Date now = new Date(System.currentTimeMillis());
+            long nowL = ((now.getHours() * 60 + now.getMinutes()) * 60 + now.getSeconds()) * 1000;
+
+
+            long timeInMills = (long) (mHour * 60 + mMinute) * 60000;
+
+            long dif = timeInMills - nowL;
 
             Intent intent = new Intent(MainActivity.this, RemindClass.class);
+            startService(intent);
             PendingIntent pendingIntent = PendingIntent.getService(MainActivity.this, 0, intent, 0);
-            alarmManager.set(AlarmManager.RTC, timeInMills, pendingIntent);
+
+            alarmManager.set(AlarmManager.RTC, dif, pendingIntent);
         }
     };
 
