@@ -1,0 +1,38 @@
+Old System: Sorting Favorite Numbers 
+
+Everybody picks their favorite number 1-99
+They all go up to the board and write it down in a line
+They then have to sort the numbers, the last person up there then writing them
+
+
+New System: Easy Sort (Create a stem and leaf plot eventually)
+
+Phased Conversion: Have people go up by what their numbers start with
+Write in a stem and leaf plot fashion
+get like (10, 15, 12, 28, 23, 25, 39, 32, 35 etc)
+Sort numbers after (10, 12, 15, 23, 25, 28, 32, 35, 39)
+
+Then have people go up by the sum of their digits
+
+1 goes up first
+Then 2, then 3 and so on, up to 18
+
+get like 
+1 
+10 
+----
+1 2
+11
+20
+----
+1 2 3 
+11 12
+21
+30
+
+Parallel Conversion: On one half the board do the old way, the other half do the new way
+have to people write the sorted numbers top to down, see what is faster
+
+
+
+
