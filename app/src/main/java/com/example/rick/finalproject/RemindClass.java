@@ -34,7 +34,7 @@ import android.content.Intent;
                     .setAutoCancel(true)
                     .setContentTitle("Local Notification")
                     .setContentText("This is content text.");
-            Notification n = builder.getNotification();
+            Notification n = builder.build();
 
             nm.notify(1, n);
 
