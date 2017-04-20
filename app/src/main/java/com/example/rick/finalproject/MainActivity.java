@@ -27,13 +27,13 @@ public class MainActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        reminderService = new RemindClass();
+        reminderService = new RemindClass("RC");
 
         TimePickerDialog dialog = new TimePickerDialog(this, mTimeSetListener, mHour, mMinute, false);
         dialog.show();
 
         //db/recyclerView setup here... when we have the recycler view (dropdown list thing)
-        //dbHelper db = new dbHelper(this);
+        dbHelper db = new dbHelper(this);
 
     }
 
@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
             long dif = timeInMills - nowL;
 
             Intent intent = new Intent(getApplicationContext(), RemindClass.class);
-            //startService(intent);
+            startService(intent);
             PendingIntent pendingIntent = PendingIntent.getService(MainActivity.this, 0, intent, 0);
 
             alarmManager.set(AlarmManager.RTC, dif, pendingIntent);
