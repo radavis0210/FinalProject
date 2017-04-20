@@ -28,7 +28,7 @@ import android.content.Intent;
             Notification.Builder builder = new Notification.Builder(this);
 
             builder.setContentIntent(contentIntent)
-                    //.setSmallIcon()
+                    .setSmallIcon(R.drawable.icon)
                     .setTicker("Local Notification Ticker")
                     .setWhen(System.currentTimeMillis())
                     .setAutoCancel(true)

@@ -17,8 +17,8 @@
         </activity>
 
         <service
-            android:name=".RemindClass"
-            android:exported="false"/>
+            android:name="com.example.rick.finalproject.RemindClass">
+        </service>
     </application>
 
 </manifest>
