@@ -6,6 +6,7 @@ import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.NotificationCompat;
 import android.support.v7.widget.RecyclerView;
 import android.widget.TimePicker;
 
@@ -27,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        reminderService = new RemindClass("RC");
+        reminderService = new RemindClass();
 
         TimePickerDialog dialog = new TimePickerDialog(this, mTimeSetListener, mHour, mMinute, false);
         dialog.show();
@@ -53,7 +54,6 @@ public class MainActivity extends AppCompatActivity {
             c.set(Calendar.MINUTE, mMinute);
             c.set(Calendar.SECOND, 0);
 
-
             Date now = new Date(System.currentTimeMillis());
             long nowL = ((now.getHours() * 60 + now.getMinutes()) * 60 + now.getSeconds()) * 1000;
 
@@ -63,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
             long dif = timeInMills - nowL;
 
             Intent intent = new Intent(getApplicationContext(), RemindClass.class);
+            intent.setAction("ACTION_SHOW_ALARMS");
             startService(intent);
             PendingIntent pendingIntent = PendingIntent.getService(MainActivity.this, 0, intent, 0);
 
