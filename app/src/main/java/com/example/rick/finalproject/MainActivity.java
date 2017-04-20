@@ -65,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(getApplicationContext(), RemindClass.class);
             startService(intent);
             PendingIntent pendingIntent = PendingIntent.getService(MainActivity.this, 0, intent, 0);
+            long test = AlarmManager.RTC;
 
             alarmManager.set(AlarmManager.RTC, dif, pendingIntent);
 
