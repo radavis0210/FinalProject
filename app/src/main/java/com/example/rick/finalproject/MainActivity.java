@@ -11,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -37,11 +38,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         reminderService = new RemindClass();
+        final TimePickerDialog dialog = new TimePickerDialog(this, mTimeSetListener, mHour, mMinute, false);
 
         final Button b = (Button) findViewById(R.id.btnAdd);
         b.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-               // add();
+                dialog.show();
             }
         });
 
@@ -81,9 +83,5 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
-    public void add(View view){
-        TimePickerDialog dialog = new TimePickerDialog(this, mTimeSetListener, mHour, mMinute, false);
-        dialog.show();
-    }
 }
 
