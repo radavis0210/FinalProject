@@ -11,21 +11,21 @@ public class Alarm {
     private String name;
     private String desc;
     //for now alarmTime is left as string, pretty simple to change
-    private String alarmTime;
+    private long alarmTime;
     //audio will probably be implemented here as well, but for now it's left out
 
     public Alarm(){
         //empty constructor for getAllAlarms in DB
     }
 
-    public Alarm(int id, String name, String desc, String alarmTime){
+    public Alarm(int id, String name, String desc, long alarmTime){
         this.id = id;
         this.name = name;
         this.desc = desc;
         this.alarmTime = alarmTime;
     }
 
-    public Alarm(String name, String desc, String alarmTime){
+    public Alarm(String name, String desc, long alarmTime){
         this.name = name;
         this.desc = desc;
         this.alarmTime = alarmTime;
@@ -55,11 +55,11 @@ public class Alarm {
         this.desc = desc;
     }
 
-    public String getAlarmTime() {
+    public long getAlarmTime() {
         return alarmTime;
     }
 
-    public void setAlarmTime(String alarmTime) {
+    public void setAlarmTime(long alarmTime) {
         this.alarmTime = alarmTime;
     }
 

@@ -66,11 +66,8 @@ public class MainActivity extends AppCompatActivity {
             long dif = timeInMills - nowL;
 
             Intent intent = new Intent(getApplicationContext(), RemindClass.class);
-            //startService(intent);
             PendingIntent pendingIntent = PendingIntent.getService(MainActivity.this, 0, intent, 0);
-            long test = AlarmManager.RTC;
-
-            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, SystemClock.elapsedRealtime(), dif, pendingIntent);
+            alarmManager.setExact(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + dif, pendingIntent);
         }
     };
 
