@@ -8,6 +8,8 @@ import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TimePicker;
 
 import java.util.ArrayList;
@@ -22,7 +24,9 @@ import static android.app.AlarmManager.RTC_WAKEUP;
 public class MainActivity extends AppCompatActivity {
 
     int mHour, mMinute;
+    long dif;
     RemindClass reminderService;
+
 
     private List<Alarm> alarmList = new ArrayList<>();
     private RecyclerView rvAlarms;
@@ -34,8 +38,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         reminderService = new RemindClass();
 
-        TimePickerDialog dialog = new TimePickerDialog(this, mTimeSetListener, mHour, mMinute, false);
-        dialog.show();
+        final Button b = (Button) findViewById(R.id.btnAdd);
+        b.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+               // add();
+            }
+        });
+
 
         //db/recyclerView setup here... when we have the recycler view (dropdown list thing)
         dbHelper db = new dbHelper(this);
@@ -48,7 +57,6 @@ public class MainActivity extends AppCompatActivity {
         public void onTimeSet(TimePicker v, int hourOfDay, int minute) {
             mHour = hourOfDay;
             mMinute = minute;
-
             AlarmManager alarmManager = (AlarmManager)getSystemService(ALARM_SERVICE);
             Calendar c = Calendar.getInstance();
             c.set(Calendar.YEAR, Calendar.YEAR);
@@ -63,16 +71,19 @@ public class MainActivity extends AppCompatActivity {
 
             long timeInMills = (long) (mHour * 60 + mMinute) * 60000;
 
-            long dif = timeInMills - nowL;
+            dif = timeInMills - nowL;
 
             Intent intent = new Intent(getApplicationContext(), RemindClass.class);
             //startService(intent);
             PendingIntent pendingIntent = PendingIntent.getService(MainActivity.this, 0, intent, 0);
-            long test = AlarmManager.RTC;
 
-            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, SystemClock.elapsedRealtime(), dif, pendingIntent);
+            alarmManager.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + dif, pendingIntent);
         }
     };
 
+    public void add(View view){
+        TimePickerDialog dialog = new TimePickerDialog(this, mTimeSetListener, mHour, mMinute, false);
+        dialog.show();
+    }
 }
 
