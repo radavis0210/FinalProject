@@ -52,7 +52,7 @@ public class AlarmsAdapter extends RecyclerView.Adapter<AlarmsAdapter.MyViewHold
         Alarm alarm = alarmList.get(position);
         holder.name.setText(alarm.getName());
         holder.desc.setText(alarm.getDesc());
-        holder.time.setText(alarm.getAlarmTime());
+        holder.time.setText(Long.toString(alarm.getAlarmTime()));
 
     }
 

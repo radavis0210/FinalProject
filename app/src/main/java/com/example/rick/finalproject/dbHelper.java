@@ -33,7 +33,7 @@ public class dbHelper extends SQLiteOpenHelper {
                 + KEY_ID + " INTEGER PRIMARY KEY, "
                 + KEY_NAME + " TEXT,"
                 + KEY_DESC + " TEXT,"
-                + KEY_TIME + " TEXT);";
+                + KEY_TIME + " NUMBER);";
         db.execSQL(CREATE_TABLE);
     }
 
@@ -70,10 +70,10 @@ public class dbHelper extends SQLiteOpenHelper {
         if (cursor != null)
             cursor.moveToFirst();
         else
-            return  new Alarm(-1, "", "", "");
+            return  new Alarm(-1, "", "", -1);
 
         Alarm alarm = new Alarm(Integer.parseInt(cursor.getString(0)),
-                cursor.getString(1), cursor.getString(2), cursor.getString(3));
+                cursor.getString(1), cursor.getString(2), cursor.getLong(3));
         // return contact
         return alarm;
     }
@@ -93,7 +93,7 @@ public class dbHelper extends SQLiteOpenHelper {
                 alarm.setId(Integer.parseInt(cursor.getString(0)));
                 alarm.setName(cursor.getString(1));
                 alarm.setDesc(cursor.getString(2));
-                alarm.setAlarmTime(cursor.getString(3));
+                alarm.setAlarmTime(cursor.getLong(3));
                 // Adding alarm to list
                 alarmList.add(alarm);
             } while (cursor.moveToNext());

@@ -37,11 +37,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         reminderService = new RemindClass();
-
         final Button b = (Button) findViewById(R.id.btnAdd);
         b.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-               // add();
+                mHour=0;
+                mMinute=0;
+                TimePickerDialog dialog = new TimePickerDialog(MainActivity.this, mTimeSetListener, mHour, mMinute, false);
+                dialog.show();
             }
         });
 
@@ -71,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
 
             long timeInMills = (long) (mHour * 60 + mMinute) * 60000;
 
+
             dif = timeInMills - nowL;
 
             Intent intent = new Intent(getApplicationContext(), RemindClass.class);
@@ -81,9 +84,5 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
-    public void add(View view){
-        TimePickerDialog dialog = new TimePickerDialog(this, mTimeSetListener, mHour, mMinute, false);
-        dialog.show();
-    }
 }
 
