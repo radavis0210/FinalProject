@@ -78,7 +78,7 @@ public class dbHelper extends SQLiteOpenHelper {
         return alarm;
     }
 
-    public List<Alarm> getAllBirds() {
+    public List<Alarm> getAllAlarms() {
         List<Alarm> alarmList = new ArrayList<Alarm>();
         // Select All Query
         String selectQuery = "SELECT  * FROM " + ALARMS_TABLE;

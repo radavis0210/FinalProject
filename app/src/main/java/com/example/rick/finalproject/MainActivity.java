@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
@@ -50,6 +52,30 @@ public class MainActivity extends AppCompatActivity {
 
         //db/recyclerView setup here... when we have the recycler view (dropdown list thing)
         dbHelper db = new dbHelper(this);
+        rvAlarms = (RecyclerView)findViewById(R.id.rvAlarms);
+        aAdapter = new AlarmsAdapter(alarmList);
+        RecyclerView.LayoutManager aLayoutManager = new LinearLayoutManager(getApplicationContext());
+        rvAlarms.setLayoutManager(aLayoutManager);
+        rvAlarms.setItemAnimator(new DefaultItemAnimator());
+        rvAlarms.setAdapter(aAdapter);
+        alarmList.addAll(db.getAllAlarms());
+        aAdapter.notifyDataSetChanged();
+
+        rvAlarms.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), rvAlarms, new ClickListener(){
+            @Override
+            public void onClick(View view, int position){
+               // Intent i = new Intent(getApplicationContext(), BirdDisplayActivity.class);
+                //i.putExtra("Alarm", position);
+                //startActivity(i);
+            }
+
+            @Override
+            public void onLongClick(View view, int position) {
+
+            }
+        }));
+
+
 
     }
 
@@ -84,5 +110,10 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
+    public interface ClickListener {
+        void onClick(View view, int position);
+
+        void onLongClick(View view, int position);
+    }
 }
 
