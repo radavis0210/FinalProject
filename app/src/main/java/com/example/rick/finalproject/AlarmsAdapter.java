@@ -23,13 +23,12 @@ public class AlarmsAdapter extends RecyclerView.Adapter<AlarmsAdapter.MyViewHold
     private List<Alarm> alarmList;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView name, desc, time;
+        public TextView name, desc;
 
         public MyViewHolder(View view) {
             super(view);
-            time = (TextView) view.findViewById(R.id.Time);
-            name = (TextView) view.findViewById(R.id.Name);
-            desc = (TextView) view.findViewById(R.id.Desc);
+            name = (TextView) view.findViewById(R.id.tvName);
+            desc = (TextView) view.findViewById(R.id.tvDesc);
 
         }
     }
@@ -42,7 +41,7 @@ public class AlarmsAdapter extends RecyclerView.Adapter<AlarmsAdapter.MyViewHold
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.alarm_list_layout, parent, false);
+                .inflate(R.layout.alarm, parent, false);
 
         return new MyViewHolder(itemView);
     }
@@ -50,9 +49,24 @@ public class AlarmsAdapter extends RecyclerView.Adapter<AlarmsAdapter.MyViewHold
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
         Alarm alarm = alarmList.get(position);
-        holder.name.setText(alarm.getName());
+        long milliseconds = alarm.getAlarmTime();
+        int minutes = (int) ((milliseconds / (1000*60)) % 60);
+        int hours   = (int) ((milliseconds / (1000*60*60)) % 24);
+        String ampm = "am";
+        String extra = "";
+        if(hours > 12){
+            ampm = "pm";
+            hours -= 12;
+        }
+        if(hours == 0){
+            hours = 12;
+        }
+        if(minutes < 10){
+            extra = "0";
+        }
+
+        holder.name.setText(alarm.getName() + " " + hours + ":" + extra + minutes + ampm);
         holder.desc.setText(alarm.getDesc());
-        holder.time.setText(Long.toString(alarm.getAlarmTime()));
 
     }
 

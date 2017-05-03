@@ -16,6 +16,8 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".AlarmDisplayActivity"></activity>
+
         <service
             android:name="com.example.rick.finalproject.RemindClass">
         </service>

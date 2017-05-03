@@ -2,58 +2,37 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <TextView
-        android:id="@+id/tvBack"
-        android:layout_width="370dp"
-        android:layout_height="104dp"
-        android:layout_marginTop="21dp"
-        android:background="@android:color/black"
-        android:text=""
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+    android:layout_height="wrap_content"
+    android:focusable="true"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp"
+    android:clickable="true"
+    android:background="?android:attr/selectableItemBackground"
+    android:orientation="horizontal">
 
     <TextView
-        android:id="@+id/tvMain"
-        android:layout_width="365dp"
-        android:layout_height="100dp"
-        android:layout_alignLeft="@+id/tvBack"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="false"
-        android:layout_alignStart="@+id/tvBack"
-        android:layout_marginLeft="9dp"
-        android:layout_marginTop="23dp"
-
-        android:width="365dp"
-        android:height="100dp"
+        android:id="@+id/tvName"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="11dp"
         android:background="@android:color/background_light"
         android:gravity="left|center"
-        android:text="    Mail Things to People: 4:00pm"
+        android:text="AlarmName"
         android:textColor="@android:color/black"
         android:textSize="20dp" />
 
-
-
-    <ImageView
-        android:id="@+id/ivExit"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_alignEnd="@+id/tvBack"
-        android:layout_alignRight="@+id/tvBack"
-        android:layout_alignTop="@+id/tvBack"
-        app:srcCompat="@drawable/exit2" />
-
-    <ImageView
-        android:id="@+id/ivEdit"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_alignBottom="@+id/tvBack"
-        android:layout_alignLeft="@+id/ivExit"
-        android:layout_alignStart="@+id/ivExit"
-        app:srcCompat="@drawable/settings" />
-
-
+    <TextView
+        android:id="@+id/tvDesc"
+        android:layout_width="300dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="11dp"
+        android:background="@android:color/background_light"
+        android:text="AlarmDesc"
+        android:textColor="@android:color/black"
+        android:textSize="16dp"
+        android:layout_below="@+id/tvName" />
 
 </RelativeLayout>

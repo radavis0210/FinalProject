@@ -53,7 +53,7 @@ import java.util.Date;
             int alarmCount = db.getAlarmsCount();
             if(alarmCount > 0){
                 long lowest = Long.MAX_VALUE;
-                for(int i = 0; i < alarmCount; i++){
+                for(int i = 1; i <= alarmCount; i++){
                     Alarm temp = db.getAlarm(i);
                     Date now = new Date(System.currentTimeMillis());
                     long nowL = ((now.getHours() * 60 + now.getMinutes()) * 60 + now.getSeconds()) * 1000;
@@ -61,13 +61,22 @@ import java.util.Date;
                         lowest = temp.getAlarmTime()-nowL;
                     }
                 }
+                if(lowest == Long.MAX_VALUE){
+                    for(int i = 1; i <= alarmCount; i++){
+                        Alarm temp = db.getAlarm(i);
+                        if(temp.getAlarmTime() < lowest){
+                            lowest = temp.getAlarmTime();
+                        }
+                    }
+                    Date now = new Date(System.currentTimeMillis());
+                    long nowL = ((now.getHours() * 60 + now.getMinutes()) * 60 + now.getSeconds()) * 1000;
+                    lowest += (86400000-nowL);
+                }
                 Intent newIntent = new Intent(getApplicationContext(), RemindClass.class);
                 PendingIntent pendingIntent = PendingIntent.getService(this, 0, newIntent, 0);
                 AlarmManager alarmManager = (AlarmManager)getSystemService(ALARM_SERVICE);
                 alarmManager.setExact(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + lowest, pendingIntent);
             }
-
-
         }
     }
 
