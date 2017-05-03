@@ -50,7 +50,6 @@ public class AlarmDisplayActivity extends AppCompatActivity {
             public void onClick(View v){
                 curAlarm.setName(etName.getText().toString());
                 curAlarm.setDesc(etDesc.getText().toString());
-                curAlarm.setAlarmTime(Long.parseLong(etTime.getText().toString()));
                 db.updateAlarm(curAlarm);
             }
         });
@@ -111,7 +110,6 @@ public class AlarmDisplayActivity extends AppCompatActivity {
         public void onTimeSet(TimePicker v, int hourOfDay, int minute) {
             mHour = hourOfDay;
             mMinute = minute;
-            AlarmManager alarmManager = (AlarmManager)getSystemService(ALARM_SERVICE);
             Calendar c = Calendar.getInstance();
             c.set(Calendar.YEAR, Calendar.YEAR);
             c.set(Calendar.MONTH, Calendar.MONTH);
@@ -125,7 +123,23 @@ public class AlarmDisplayActivity extends AppCompatActivity {
 
             long timeInMills = (long) (mHour * 60 + mMinute) * 60000;
             curAlarm.setAlarmTime(timeInMills);
-            db.addAlarm(curAlarm);
+            long milliseconds = curAlarm.getAlarmTime();
+            int minutes = (int) ((milliseconds / (1000*60)) % 60);
+            int hours   = (int) ((milliseconds / (1000*60*60)) % 24);
+            String ampm = "am";
+            String extra = "";
+            if(hours > 12){
+                ampm = "pm";
+                hours -= 12;
+            }
+            if(hours == 0){
+                hours = 12;
+            }
+            if(minutes < 10){
+                extra = "0";
+            }
+
+            etTime.setText(hours + ":" + extra + minutes + ampm);
             dif = timeInMills - nowL;
 
             getNextAlarm();

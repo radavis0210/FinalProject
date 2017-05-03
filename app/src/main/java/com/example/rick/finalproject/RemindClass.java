@@ -44,7 +44,7 @@ import java.util.Date;
                         .setWhen(System.currentTimeMillis())
                         .setAutoCancel(true)
                         .setContentTitle("Local Notification")
-                        .setContentText("Plugged in.");
+                        .setContentText("Plug your phone in!");
                 Notification n = builder.build();
                 nm.notify(1, n);
             }

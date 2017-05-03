@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view, int position){
                 Intent i = new Intent(getApplicationContext(), AlarmDisplayActivity.class);
-                i.putExtra("Alarm", position);
+                i.putExtra("Alarm", position+1);
                 startActivity(i);
             }
 
