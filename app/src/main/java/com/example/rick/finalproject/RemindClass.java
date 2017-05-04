@@ -46,6 +46,8 @@ import java.util.Date;
                         .setContentTitle("Local Notification")
                         .setContentText("Plug your phone in!");
                 Notification n = builder.build();
+                n.defaults  |= Notification.DEFAULT_VIBRATE;
+                n.defaults  |= Notification.DEFAULT_SOUND;
                 nm.notify(1, n);
             }
 
