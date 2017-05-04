@@ -47,29 +47,32 @@
         android:layout_below="@+id/txtDesc"
         android:text="Alarm Time:" />
 
-    <EditText
+    <TextView
         android:singleLine="true"
-        android:layout_marginTop="50dp"
-        android:id="@+id/etTime"
+        android:layout_marginTop="64dp"
+        android:layout_marginLeft="10dp"
+        android:id="@+id/tvTime"
         android:layout_toRightOf="@+id/txtTime"
         android:layout_below="@+id/etDesc"
         android:layout_width="200dp"
-        android:layout_height="50dp" />
+        android:layout_height="50dp"
+        android:textSize="20dp"
+        android:textColor="@android:color/black"/>
 
     <Button
         android:id="@+id/btnUpdate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="73dp"
+        android:layout_marginTop="63dp"
         android:text="Update"
-        android:layout_below="@+id/etTime"
-        android:layout_alignStart="@+id/etTime" />
+        android:layout_below="@+id/tvTime"
+        android:layout_alignStart="@+id/tvTime" />
 
     <Button
         android:id="@+id/btnDelete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/etTime"
+        android:layout_alignEnd="@+id/tvTime"
         android:layout_alignTop="@+id/btnUpdate"
         android:text="Delete" />
 

@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.TimePicker;
 
 import java.util.Calendar;
@@ -23,7 +24,7 @@ public class AlarmDisplayActivity extends AppCompatActivity {
 
     EditText etName;
     EditText etDesc;
-    EditText etTime;
+    TextView tvTime;
     Button btnUpdate;
     Button btnDelete;
     Button btnBack;
@@ -41,7 +42,7 @@ public class AlarmDisplayActivity extends AppCompatActivity {
 
         etName = (EditText)findViewById(R.id.etName);
         etDesc = (EditText)findViewById(R.id.etDesc);
-        etTime = (EditText)findViewById(R.id.etTime);
+        tvTime = (TextView)findViewById(R.id.tvTime);
         btnUpdate = (Button)findViewById(R.id.btnUpdate);
         btnDelete = (Button)findViewById(R.id.btnDelete);
         btnBack = (Button)findViewById(R.id.btnBack);
@@ -57,6 +58,8 @@ public class AlarmDisplayActivity extends AppCompatActivity {
         btnDelete.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 db.deleteAlarm(curAlarm);
+                Intent i = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(i);
             }
         });
 
@@ -91,9 +94,9 @@ public class AlarmDisplayActivity extends AppCompatActivity {
             extra = "0";
         }
 
-        etTime.setText(hours + ":" + extra + minutes + ampm);
+        tvTime.setText(hours + ":" + extra + minutes + ampm);
 
-        etTime.setOnClickListener(new View.OnClickListener(){
+        tvTime.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 mHour=0;
                 mMinute=0;
@@ -139,7 +142,7 @@ public class AlarmDisplayActivity extends AppCompatActivity {
                 extra = "0";
             }
 
-            etTime.setText(hours + ":" + extra + minutes + ampm);
+            tvTime.setText(hours + ":" + extra + minutes + ampm);
             dif = timeInMills - nowL;
 
             getNextAlarm();

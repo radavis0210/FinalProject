@@ -18,16 +18,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TimePicker;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-import static android.app.AlarmManager.ELAPSED_REALTIME;
-import static android.app.AlarmManager.RTC;
-import static android.app.AlarmManager.RTC_WAKEUP;
 
 public class MainActivity extends AppCompatActivity {
 
